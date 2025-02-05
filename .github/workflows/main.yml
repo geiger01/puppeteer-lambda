@@ -26,7 +26,7 @@ jobs:
 
       # Step 4: Zip the Lambda files
       - name: Zip the project
-        run: zip -r lambda.zip handler.js node_modules
+        run: zip -r lambda.zip index.js node_modules
 
       # Step 5: Configure AWS credentials
       - name: Configure AWS credentials

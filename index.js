@@ -94,7 +94,7 @@ exports.handler = async (event) => {
 	}
 };
 
-// Testing run `node handler.js`
+// Testing run `node index.js`
 // (async () => {
 // 	const mockEvent = {
 // 		url:'https://commoninja.com'
