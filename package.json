@@ -1,0 +1,20 @@
+{
+	"name": "screenshot-lambda",
+	"version": "1.0.0",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"dependencies": {
+		"@sparticuz/chromium": "^123.0.1",
+		"dotenv": "^16.4.5",
+		"puppeteer-extra": "^3.3.4",
+		"puppeteer-core": "19.6",
+		"puppeteer-extra-plugin-stealth": "^2.11.1",
+		"puppeteer": "^21.5.0"
+	}
+}

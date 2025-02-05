@@ -1,0 +1,54 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Build directories
+dist/
+build/
+
+# Testing
+coverage/
+.nyc_output/
+
+# Environment files
+.env
+.env.test
+.env.production
+
+# IDE/Editor settings
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Logs and debugging
+debug.log
+
+# Ignore output from specific tools
+.eslintcache
+.babelrc
+*.log.*
+
+*.zip

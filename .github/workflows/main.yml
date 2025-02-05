@@ -1,0 +1,54 @@
+name: Deploy to AWS Lambda via S3
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16' # Use the Node.js version that matches your project
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Zip the Lambda files
+      - name: Zip the project
+        run: zip -r lambda.zip handler.js node_modules
+
+      # Step 5: Configure AWS credentials
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: 'us-east-1'
+
+      # Step 6: Upload to S3
+      - name: Upload Lambda zip to S3
+        run: |
+          aws s3 cp lambda.zip s3://{{your-bucket-name}}/lambda.zip
+
+      # Step 7: Update Lambda function from S3
+      - name: Update Lambda function
+        run: |
+          aws lambda update-function-code \
+            --function-name {{your-function-name}} \
+            --s3-bucket {{your-bucket-name}} \
+            --s3-key lambda.zip
+
+      # Optional Step: Clean up
+      - name: Remove zip file
+        run: rm lambda.zip
