@@ -12,3 +12,4 @@
 in the lambda UI go to
 Code - > upload from -> Amazon S3 locaion -> paste the Amazon S3 link URL
 # puppeteer-lambda
+# screenshot-lambda
