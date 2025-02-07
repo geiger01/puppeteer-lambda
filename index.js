@@ -33,16 +33,16 @@ exports.handler = async (event) => {
 	try {
 		if (event?.body) {
 			// For API Gateway
-			// const secret = event?.headers['secret'] || '';
+			const secret = event?.headers['secret'] || '';
 
-			// if (!secret || secret !== process.env.SECRET) {
-			// 	return {
-			// 		statusCode: 401,
-			// 		body: JSON.stringify({
-			// 			message: 'Unauthorized',
-			// 		}),
-			// 	};
-			// }
+			if (!secret || secret !== process.env.SECRET) {
+				return {
+					statusCode: 401,
+					body: JSON.stringify({
+						message: 'Unauthorized',
+					}),
+				};
+			}
 
 			try {
 				payload =
