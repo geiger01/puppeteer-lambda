@@ -8,7 +8,9 @@ async function getBrowser() {
 	const isLocal = process.env.AWS_EXECUTION_ENV === undefined;
 	if (isLocal) {
 		return await require('puppeteer').launch({
-			headless: true,
+			headless: false,
+			executablePath:
+				'/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
 		});
 	}
 
@@ -102,6 +104,7 @@ exports.handler = async (event) => {
 
 // 	try {
 // 		const response = await exports.handler(mockEvent);
+// 		console.log(response, 'response');
 // 	} catch (error) {
 // 		console.error('Error in local execution:', error);
 // 	}
