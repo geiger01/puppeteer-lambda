@@ -1,15 +1,105 @@
-## In order to run locally:
+# Puppeteer Lambda Boilerplate
 
-- Run: `npm i`
-- Run: `node index.js`
+A working boilerplate for running Puppeteer in AWS Lambda. This project provides a headless Chrome setup using `@sparticuz/chromium` and includes stealth plugins to avoid detection.
 
-## In order to push Lambda to AWS (manually):
+## Prerequisites
 
-- Run: `zip -r lambda.zip index.js node_modules`
-- Copy the `lambda.zip` to S3 
-- Copy uploaded file link
+- Node.js 18.x (recommended)
+- AWS Account with Lambda and S3 access
+- AWS CLI configured (for local deployment)
 
-in the lambda UI go to
-Code - > upload from -> Amazon S3 locaion -> paste the Amazon S3 link URL
-# puppeteer-lambda
-# screenshot-lambda
+## Local Development Setup
+
+1. Install Node.js 18:
+```bash
+nvm install 18
+nvm use 18
+```
+
+2. Install dependencies:
+```bash
+npm install
+```
+
+3. Create a `.env` file in the root directory:
+```bash
+SECRET=your-secret-key-here
+```
+
+4. Run locally:
+```bash
+node index.js
+```
+
+## AWS Configuration
+
+1. Create an S3 bucket for storing the Lambda deployment package
+2. Create a Lambda function with the following settings:
+   - Runtime: Node.js 18.x
+   - Memory: 1024 MB (recommended)
+   - Timeout: 30 seconds (adjust based on your needs)
+   - Architecture: x86_64
+
+## Manual Deployment to AWS
+
+1. Create deployment package:
+```bash
+zip -r lambda.zip index.js node_modules
+```
+
+2. Upload to S3:
+```bash
+aws s3 cp lambda.zip s3://your-bucket-name/lambda.zip
+```
+
+3. Update Lambda function:
+   - Go to AWS Lambda Console
+   - Select your function
+   - Go to Code tab
+   - Click "Upload from" -> "Amazon S3 location"
+   - Paste the S3 URL of your uploaded zip file
+
+## Automated Deployment with GitHub Actions
+
+This project includes a GitHub Actions workflow for automated deployment. To set it up:
+
+1. Add the following secrets to your GitHub repository:
+   - `AWS_ACCESS_KEY_ID`
+   - `AWS_SECRET_ACCESS_KEY`
+
+2. Update the workflow file (`.github/workflows/main.yml`) with your specific values:
+   - Replace `{{your-bucket-name}}` with your S3 bucket name
+   - Replace `{{your-function-name}}` with your Lambda function name
+
+3. Push to the main branch to trigger the deployment
+
+## API Usage
+
+The Lambda function accepts POST requests with the following structure:
+
+```json
+{
+  "url": "https://example.com"
+}
+```
+
+Headers required:
+```
+secret: your-secret-key
+```
+
+## Dependencies
+
+- @sparticuz/chromium: ^123.0.1
+- puppeteer-extra: ^3.3.4
+- puppeteer-core: 19.6
+- puppeteer-extra-plugin-stealth: ^2.11.1
+- puppeteer: ^21.5.0
+- dotenv: ^16.4.5
+
+## Notes
+
+- The function uses stealth plugins to avoid detection
+- Local development uses your system's Chrome installation
+- Lambda deployment uses @sparticuz/chromium for AWS compatibility
+- Make sure to keep your AWS credentials secure and never commit them to the repository
