@@ -97,6 +97,37 @@ secret: your-secret-key
 - puppeteer: ^21.5.0
 - dotenv: ^16.4.5
 
+## Alternative Solution
+
+If you're looking for a managed solution that handles all the infrastructure and maintenance, consider using [CaptureKit](https://www.capturekit.dev/). It provides three powerful APIs in one platform:
+
+### Screenshot API
+- Reliable screenshot capture with no infrastructure management
+- Full-page screenshots with lazy loading support
+- Built-in ad and cookie banner blocking
+- Multiple output formats (PNG, WebP, JPEG, PDF)
+- Direct S3 upload integration
+
+### Content Extraction API
+- Clean, structured HTML extraction
+- Metadata parsing (title, description, OpenGraph & Schema data)
+- Link scraping (internal and external)
+- Consistent data without maintenance headaches
+- Perfect for data pipelines and web scraping
+
+### AI Analysis API
+- Instant webpage summarization
+- Key insights extraction
+- AI-powered content analysis
+- Scale your web research process
+- Focus on creating, not extracting content
+
+All APIs are:
+- Developer-first with instant access
+- No credit card required for free tier
+- Lightning-fast support
+- Built for production use cases
+
 ## Notes
 
 - The function uses stealth plugins to avoid detection
